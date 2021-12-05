@@ -48,6 +48,9 @@
                                                         <buttonConfiguration key="configuration" style="plain" image="doc.on.clipboard" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="32"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="copyButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a7d-rT-9zI"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5QP-AW-ggM">
                                                         <rect key="frame" x="45.333333333333336" y="71.666666666666629" width="71.333333333333314" height="52"/>
@@ -67,6 +70,9 @@
                                                             <fontDescription key="titleFontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="generateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Va5-oN-KUJ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -96,6 +102,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="enc-6K-yZc" secondAttribute="trailing" id="wtx-Ku-L79"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordDisplay" destination="uMc-ma-yq2" id="vMh-is-fBJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
