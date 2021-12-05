@@ -58,7 +58,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="inhalemeink-logo" width="440" height="441"/>
+        <image name="inhalemeink-logo" width="440" height="441.5"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
