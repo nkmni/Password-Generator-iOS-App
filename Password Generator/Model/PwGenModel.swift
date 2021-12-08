@@ -8,13 +8,23 @@
 import Foundation
 
 struct PwGenModel {
-    var numWords = 6
-    var delimiter = " "
-    var obfuscate = false
+    var numWords: Int?
+    var delimiter: String?
+    var obfuscate: Int?
     var wordList: [String: String] = [:]
     var obfuscationTable: [String: String] = [:]
 
     init() {
+        self.updateSettings()
+        if self.numWords == nil {
+            self.numWords = 6
+        }
+        if self.delimiter == nil {
+            self.delimiter = " "
+        }
+        if self.obfuscate == nil {
+            self.obfuscate = 0
+        }
         if let path = Bundle.main.path(forResource: "eff_large_wordlist", ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
@@ -30,32 +40,26 @@ struct PwGenModel {
                 print(error)
             }
         }
-        // TODO: Load obfuscation table
     }
 
-    mutating func setNumWords(numWords: Int) {
-        self.numWords = numWords
-    }
-
-    mutating func setDelimiter(delimiter: String) {
-        self.delimiter = delimiter
-    }
-
-    mutating func setObfuscate(obfuscate: Bool) {
-        self.obfuscate = obfuscate
+    mutating func updateSettings() {
+        let userDefaults = UserDefaults.standard
+        self.numWords = userDefaults.integer(forKey: "numWords")
+        self.delimiter = userDefaults.string(forKey: "delimiter")
+        self.obfuscate = userDefaults.integer(forKey: "obfuscate")
     }
 
     func generatePassword() -> String {
         var password = ""
-        for i in 0..<self.numWords {
+        for i in 0..<self.numWords! {
             var wordID = ""
             for _ in 0..<5 {
                 let diceRoll = Int.random(in: 1...6)
                 wordID += "\(diceRoll)"
             }
             password += wordList[wordID]!
-            if i < self.numWords - 1 {
-                password += self.delimiter
+            if i < self.numWords! - 1 {
+                password += self.delimiter!
             }
         }
         // TODO: Obfuscate password if necessary
