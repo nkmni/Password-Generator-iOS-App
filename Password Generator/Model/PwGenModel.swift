@@ -15,16 +15,15 @@ struct PwGenModel {
     var obfuscationTable: [String: String] = [:]
 
     init() {
-        self.updateSettings()
-        if self.numWords == nil {
-            self.numWords = 6
+        let userDefaults = UserDefaults.standard
+        let numPwGenModelInits = userDefaults.integer(forKey: "numPwGenModelInits")
+        if numPwGenModelInits == 0 {
+            userDefaults.set(6, forKey: "numWords")
+            userDefaults.set(" ", forKey: "delimiter")
+            userDefaults.set(0, forKey: "obfuscate")
         }
-        if self.delimiter == nil {
-            self.delimiter = " "
-        }
-        if self.obfuscate == nil {
-            self.obfuscate = 0
-        }
+        userDefaults.set(1+numPwGenModelInits, forKey: "numPwGenModelInits")
+        self.updateModelSettings()
         if let path = Bundle.main.path(forResource: "eff_large_wordlist", ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
@@ -42,14 +41,15 @@ struct PwGenModel {
         }
     }
 
-    mutating func updateSettings() {
+    mutating func updateModelSettings() {
         let userDefaults = UserDefaults.standard
         self.numWords = userDefaults.integer(forKey: "numWords")
         self.delimiter = userDefaults.string(forKey: "delimiter")
         self.obfuscate = userDefaults.integer(forKey: "obfuscate")
     }
 
-    func generatePassword() -> String {
+    mutating func generatePassword() -> String {
+        self.updateModelSettings()
         var password = ""
         for i in 0..<self.numWords! {
             var wordID = ""

@@ -14,8 +14,6 @@ class GenerateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
-        // TODO: Load dictionary mapping IDs to words
     }
 
     @IBAction func generateButtonPressed(_ sender: UIButton) {
@@ -25,7 +23,7 @@ class GenerateViewController: UIViewController {
 
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "goToSettings", sender: self)
-        pwGenModel.updateSettings()
+        pwGenModel.updateModelSettings()
     }
 
     @IBAction func copyButtonPressed(_ sender: UIButton) {
@@ -37,12 +35,17 @@ class GenerateViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+
+        /*
         if (segue.identifier == "goToSettings") {
             let settingsVC = segue.destination as! SettingsViewController
         }
+         */
     }
+     */
 }
 

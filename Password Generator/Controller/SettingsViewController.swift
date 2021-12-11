@@ -38,8 +38,8 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func delimiterChanged(_ sender: UITextField) {
-        if sender.text != nil {
-            settingsModel.setDelimiter(sender.text!)
+        if let delimiter = sender.text {
+            settingsModel.setDelimiter(delimiter)
         } else {
             settingsModel.setDelimiter(" ")
             delimiterTextField.text = " "
