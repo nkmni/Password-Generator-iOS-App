@@ -23,7 +23,6 @@ class GenerateViewController: UIViewController {
 
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "goToSettings", sender: self)
-        pwGenModel.updateModelSettings()
     }
 
     @IBAction func copyButtonPressed(_ sender: UIButton) {

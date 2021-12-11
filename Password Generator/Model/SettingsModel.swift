@@ -8,6 +8,21 @@
 import Foundation
 
 struct SettingsModel {
+    func getNumWords() -> Int {
+        let userDefaults = UserDefaults.standard
+        return userDefaults.integer(forKey: "numWords")
+    }
+
+    func getDelimiter() -> String {
+        let userDefaults = UserDefaults.standard
+        return userDefaults.string(forKey: "delimiter") ?? " "
+    }
+
+    func getObfuscate() -> Int {
+        let userDefaults = UserDefaults.standard
+        return userDefaults.integer(forKey: "obfuscate")
+    }
+
     mutating func setNumWords(_ numWords: Int) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(numWords, forKey: "numWords")

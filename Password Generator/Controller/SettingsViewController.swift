@@ -16,10 +16,10 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        numWordsLabel.text = "\(settingsModel.numWords!)"
-        numWordsStepper.value = Double(settingsModel.numWords!)
-        delimiterTextField.text = settingsModel.delimiter!
-        obfuscateToggle.selectedSegmentIndex = settingsModel.obfuscate!
+        numWordsLabel.text = "\(settingsModel.getNumWords())"
+        numWordsStepper.value = Double(settingsModel.getNumWords())
+        delimiterTextField.text = settingsModel.getDelimiter()
+        obfuscateToggle.selectedSegmentIndex = settingsModel.getObfuscate()
     }
 
     /*
