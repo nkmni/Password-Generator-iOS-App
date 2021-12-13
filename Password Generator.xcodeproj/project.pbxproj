@@ -17,6 +17,7 @@
 		E9918368275AFA760050ED6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9918366275AFA760050ED6A /* Main.storyboard */; };
 		E991836A275AFA7A0050ED6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9918369275AFA7A0050ED6A /* Assets.xcassets */; };
 		E991836D275AFA7A0050ED6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E991836B275AFA7A0050ED6A /* LaunchScreen.storyboard */; };
+		E99DF72D2766B2F400B9EF55 /* obfuscation_table.txt in Resources */ = {isa = PBXBuildFile; fileRef = E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E9918369275AFA7A0050ED6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E991836C275AFA7A0050ED6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E991836E275AFA7A0050ED6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = obfuscation_table.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		E9718648275D9BC900425021 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */,
 				E971864B275DA16700425021 /* eff_large_wordlist.txt */,
 				E9718649275D9C4F00425021 /* PwGenModel.swift */,
 				E971864F2760342C00425021 /* SettingsModel.swift */,
@@ -163,6 +166,7 @@
 			files = (
 				E991836D275AFA7A0050ED6A /* LaunchScreen.storyboard in Resources */,
 				E991836A275AFA7A0050ED6A /* Assets.xcassets in Resources */,
+				E99DF72D2766B2F400B9EF55 /* obfuscation_table.txt in Resources */,
 				E971864C275DA16700425021 /* eff_large_wordlist.txt in Resources */,
 				E9918368275AFA760050ED6A /* Main.storyboard in Resources */,
 			);

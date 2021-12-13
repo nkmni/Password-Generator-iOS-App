@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var numWordsLabel: UILabel!
     @IBOutlet weak var numWordsStepper: UIStepper!
     @IBOutlet weak var delimiterTextField: UITextField!
@@ -16,14 +16,20 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delimiterTextField.delegate = self
         numWordsLabel.text = "\(settingsModel.getNumWords())"
         numWordsStepper.value = Double(settingsModel.getNumWords())
         delimiterTextField.text = settingsModel.getDelimiter()
         obfuscateToggle.selectedSegmentIndex = settingsModel.getObfuscate()
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,7 +43,7 @@ class SettingsViewController: UIViewController {
         settingsModel.setNumWords(Int(sender.value))
     }
 
-    @IBAction func delimiterChanged(_ sender: UITextField) {
+    @IBAction func delimiterEdited(_ sender: UITextField) {
         if let delimiter = sender.text {
             settingsModel.setDelimiter(delimiter)
         } else {
@@ -48,6 +54,16 @@ class SettingsViewController: UIViewController {
 
     @IBAction func obfuscateToggled(_ sender: UISegmentedControl) {
         settingsModel.setObfuscate(sender.selectedSegmentIndex)
+    }
+
+    @IBAction func defaultButtonPressed(_ sender: UIButton) {
+        settingsModel.setNumWords(6)
+        numWordsLabel.text = "6"
+        numWordsStepper.value = 6
+        settingsModel.setDelimiter(" ")
+        delimiterTextField.text = " "
+        settingsModel.setObfuscate(0)
+        obfuscateToggle.selectedSegmentIndex = settingsModel.getObfuscate()
     }
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {

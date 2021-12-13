@@ -39,6 +39,21 @@ struct PwGenModel {
                 print(error)
             }
         }
+        if let path = Bundle.main.path(forResource: "obfuscation_table", ofType: "txt") {
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let lines = data.components(separatedBy: .newlines)
+                for line in lines {
+                    if line == "" {
+                        continue
+                    }
+                    let symbolToLeet = line.components(separatedBy: " ")
+                    self.obfuscationTable[symbolToLeet[0]] = symbolToLeet[1]
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
 
     mutating func updateModelSettings() {
@@ -57,12 +72,17 @@ struct PwGenModel {
                 let diceRoll = Int.random(in: 1...6)
                 wordID += "\(diceRoll)"
             }
-            password += wordList[wordID]!
+            var word = wordList[wordID]!
+            if obfuscate == 1 {
+                for (symbol, leet) in obfuscationTable {
+                    word = word.replacingOccurrences(of: symbol, with: leet)
+                }
+            }
+            password += word
             if i < self.numWords! - 1 {
                 password += self.delimiter!
             }
         }
-        // TODO: Obfuscate password if necessary
         return password
     }
 }

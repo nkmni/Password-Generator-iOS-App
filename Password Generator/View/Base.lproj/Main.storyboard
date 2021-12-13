@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,69 +18,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="enc-6K-yZc">
-                                <rect key="frame" x="20" y="44" width="388" height="832"/>
+                                <rect key="frame" x="20" y="44" width="388" height="848"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Generator" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEs-P2-3pR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Generator" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="BEs-P2-3pR">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="131.33333333333334"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="48"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Press the &quot;Generate&quot; button!" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-ma-yq2">
-                                        <rect key="frame" x="0.0" y="147.33333333333334" width="388" height="470.66666666666663"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tap &quot;Generate&quot;" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-ma-yq2">
+                                        <rect key="frame" x="0.0" y="147.33333333333334" width="388" height="474.66666666666663"/>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.0" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="0.0" green="0.85098039215686272" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="32"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="otD-5a-3f8">
-                                        <rect key="frame" x="0.0" y="634" width="388" height="198"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3MI-vH-4LW">
+                                        <rect key="frame" x="0.0" y="638" width="388" height="210"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3MI-vH-4LW">
-                                                <rect key="frame" x="113" y="0.0" width="162" height="198"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rx-VC-SYA">
-                                                        <rect key="frame" x="44.666666666666657" y="0.0" width="73" height="55.333333333333336"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="doc.on.clipboard" catalog="system">
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="32"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="copyButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a7d-rT-9zI"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5QP-AW-ggM">
-                                                        <rect key="frame" x="45.333333333333336" y="71.666666666666629" width="71.333333333333314" height="52"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain">
-                                                            <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="32"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HMg-KW-oQ7"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-8K-4L8">
-                                                        <rect key="frame" x="0.0" y="140" width="162" height="58"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Generate" cornerStyle="capsule">
-                                                            <backgroundConfiguration key="background">
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </backgroundConfiguration>
-                                                            <fontDescription key="titleFontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
-                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="generateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Va5-oN-KUJ"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rx-VC-SYA">
+                                                <rect key="frame" x="153" y="0.0" width="82" height="60.666666666666664"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="doc.on.clipboard" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="32" weight="black"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="copyButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a7d-rT-9zI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5QP-AW-ggM">
+                                                <rect key="frame" x="154.66666666666666" y="80" width="78.666666666666657" height="52.666666666666657"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain">
+                                                    <imageReference key="image" image="gearshape.fill" catalog="system"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="32" weight="black"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HMg-KW-oQ7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-8K-4L8">
+                                                <rect key="frame" x="113" y="152" width="162" height="58"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Generate" cornerStyle="capsule">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="generateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Va5-oN-KUJ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="198" id="1on-gQ-2yT"/>
+                                            <constraint firstAttribute="height" constant="210" id="5HU-ky-tRP"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -87,8 +83,8 @@
                                     <constraint firstItem="uMc-ma-yq2" firstAttribute="leading" secondItem="enc-6K-yZc" secondAttribute="leadingMargin" id="4cZ-TC-YP7"/>
                                     <constraint firstItem="BEs-P2-3pR" firstAttribute="leading" secondItem="enc-6K-yZc" secondAttribute="leading" id="Eld-O5-h9B"/>
                                     <constraint firstAttribute="trailing" secondItem="BEs-P2-3pR" secondAttribute="trailing" id="F4i-Ns-qJ2"/>
+                                    <constraint firstItem="3MI-vH-4LW" firstAttribute="top" secondItem="uMc-ma-yq2" secondAttribute="bottom" constant="16" id="Pfr-fF-cqd"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="uMc-ma-yq2" secondAttribute="trailing" id="TlR-26-m5p"/>
-                                    <constraint firstItem="otD-5a-3f8" firstAttribute="top" secondItem="uMc-ma-yq2" secondAttribute="bottom" constant="16" id="XTg-Dt-6kt"/>
                                     <constraint firstItem="BEs-P2-3pR" firstAttribute="top" secondItem="enc-6K-yZc" secondAttribute="top" id="fMj-jD-2CN"/>
                                     <constraint firstItem="uMc-ma-yq2" firstAttribute="top" secondItem="BEs-P2-3pR" secondAttribute="bottom" constant="16" id="jdQ-j5-ujc"/>
                                 </constraints>
@@ -98,14 +94,14 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="enc-6K-yZc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Rfq-Zh-jqk"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="enc-6K-yZc" secondAttribute="bottom" constant="16" id="kGS-F8-Q8q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="enc-6K-yZc" secondAttribute="bottom" id="kGS-F8-Q8q"/>
                             <constraint firstItem="enc-6K-yZc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ktF-p1-Xpz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="enc-6K-yZc" secondAttribute="trailing" id="wtx-Ku-L79"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="passwordDisplay" destination="uMc-ma-yq2" id="vMh-is-fBJ"/>
-                        <segue destination="fYx-Nm-O3n" kind="presentation" identifier="goToSettings" id="cOh-Ht-Ke9"/>
+                        <segue destination="fYx-Nm-O3n" kind="presentation" identifier="goToSettings" modalPresentationStyle="fullScreen" id="cOh-Ht-Ke9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -117,17 +113,17 @@
             <objects>
                 <viewController id="fYx-Nm-O3n" customClass="SettingsViewController" customModule="Password_Generator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eSa-oX-GgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUh-Rw-Yli">
-                                <rect key="frame" x="20" y="0.0" width="388" height="65.666666666666671"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="mUh-Rw-Yli">
+                                <rect key="frame" x="20" y="44.000000000000007" width="388" height="65.666666666666686"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="gvY-JZ-Adc">
-                                <rect key="frame" x="20" y="97.666666666666686" width="388" height="196"/>
+                                <rect key="frame" x="20" y="141.66666666666666" width="388" height="195.99999999999997"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YfY-kk-Kcz">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="44"/>
@@ -135,13 +131,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8cV-Ri-Fjv">
                                                 <rect key="frame" x="0.0" y="0.0" width="194" height="44"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Words:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUl-Rv-Prc">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Words:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hUl-Rv-Prc">
                                                         <rect key="frame" x="0.0" y="0.0" width="145" height="44"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibl-Vz-Hwb">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ibl-Vz-Hwb">
                                                         <rect key="frame" x="161" y="0.0" width="33" height="44"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,7 +145,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="GIc-pc-cNb">
+                                            <stepper opaque="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" value="6" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="GIc-pc-cNb">
                                                 <rect key="frame" x="194" y="6" width="194" height="32"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
@@ -158,38 +154,40 @@
                                             </stepper>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BZj-d7-kId">
-                                        <rect key="frame" x="0.0" y="75.999999999999986" width="388" height="44"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BZj-d7-kId">
+                                        <rect key="frame" x="0.0" y="76" width="388" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delimiter:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDv-tf-Le3">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delimiter:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="TDv-tf-Le3">
                                                 <rect key="frame" x="0.0" y="0.0" width="194" height="44"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vxk-Bo-IW2">
-                                                <rect key="frame" x="194" y="0.0" width="194" height="44"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " borderStyle="roundedRect" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="vxk-Bo-IW2">
+                                                <rect key="frame" x="194" y="5" width="194" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" systemColor="labelColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="delimiterChanged:" destination="fYx-Nm-O3n" eventType="valueChanged" id="UVJ-lc-kMz"/>
+                                                    <action selector="delimiterEdited:" destination="fYx-Nm-O3n" eventType="editingDidEnd" id="kOB-si-2ER"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h3y-Xi-6R0">
-                                        <rect key="frame" x="0.0" y="152" width="388" height="44"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="h3y-Xi-6R0">
+                                        <rect key="frame" x="0.0" y="152.00000000000003" width="388" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obfuscate:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1f-OD-QPx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obfuscate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="O1f-OD-QPx">
                                                 <rect key="frame" x="0.0" y="0.0" width="194" height="44"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xh-6w-FOJ">
-                                                <rect key="frame" x="194" y="0.0" width="194" height="45"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="194" y="6.6666666666666288" width="194" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                 <segments>
                                                     <segment title="Off"/>
                                                     <segment title="On"/>
@@ -211,7 +209,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fox-75-1O5">
-                                <rect key="frame" x="147.66666666666666" y="722" width="132.99999999999997" height="132"/>
+                                <rect key="frame" x="147.66666666666666" y="760" width="132.99999999999997" height="132"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWH-ha-Q2C">
                                         <rect key="frame" x="0.0" y="0.0" width="133" height="58"/>
@@ -223,6 +221,9 @@
                                             <fontDescription key="titleFontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="defaultButtonPressed:" destination="fYx-Nm-O3n" eventType="touchUpInside" id="JLW-1U-OSW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Rv-F0-Kei">
                                         <rect key="frame" x="0.0" y="74" width="133" height="58"/>
@@ -249,7 +250,7 @@
                             <constraint firstItem="fox-75-1O5" firstAttribute="centerX" secondItem="eSa-oX-GgJ" secondAttribute="centerX" id="hq1-I7-2IQ"/>
                             <constraint firstItem="mUh-Rw-Yli" firstAttribute="top" secondItem="eSa-oX-GgJ" secondAttribute="topMargin" id="oZU-5a-RKh"/>
                             <constraint firstItem="gvY-JZ-Adc" firstAttribute="leading" secondItem="eSa-oX-GgJ" secondAttribute="leadingMargin" id="qOh-Cp-x3Z"/>
-                            <constraint firstItem="fox-75-1O5" firstAttribute="bottom" secondItem="aH0-ts-jHv" secondAttribute="bottom" constant="16" id="siM-rI-CBj"/>
+                            <constraint firstItem="fox-75-1O5" firstAttribute="bottom" secondItem="aH0-ts-jHv" secondAttribute="bottom" id="siM-rI-CBj"/>
                             <constraint firstItem="mUh-Rw-Yli" firstAttribute="leading" secondItem="eSa-oX-GgJ" secondAttribute="leadingMargin" id="uVo-fE-Ti6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mUh-Rw-Yli" secondAttribute="trailing" id="wVf-JH-ru2"/>
                         </constraints>
@@ -269,5 +270,11 @@
     <resources>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
