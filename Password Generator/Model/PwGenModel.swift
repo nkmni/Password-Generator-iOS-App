@@ -15,6 +15,7 @@ struct PwGenModel {
     var obfuscationTable: [String: String] = [:]
 
     init() {
+        print("init")
         let userDefaults = UserDefaults.standard
         let numPwGenModelInits = userDefaults.integer(forKey: "numPwGenModelInits")
         if numPwGenModelInits == 0 {
