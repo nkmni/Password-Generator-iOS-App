@@ -8,19 +8,34 @@
 import Foundation
 
 struct PwGenModel {
-    var numWords: Int?
-    var delimiter: String?
-    var obfuscate: Int?
     var wordList: [String: String] = [:]
     var obfuscationTable: [String: String] = [:]
+
+    var passwordType: Int?
+
+    var charsLength: Int?
+    var charsLower: Bool?
+    var charsUpper: Bool?
+    var charsNumbers: Bool?
+    var charsSymbols: Bool?
+
+    var passphraseNumWords: Int?
+    var passphraseDelimiter: String?
+    var passphraseObfuscate: Bool?
 
     init() {
         let userDefaults = UserDefaults.standard
         let numPwGenModelInits = userDefaults.integer(forKey: "numPwGenModelInits")
         if numPwGenModelInits == 0 {
-            userDefaults.set(6, forKey: "numWords")
-            userDefaults.set(" ", forKey: "delimiter")
-            userDefaults.set(0, forKey: "obfuscate")
+            userDefaults.set(0, forKey: "PasswordType")
+            userDefaults.set(24, forKey: "CharsLength")
+            userDefaults.set(true, forKey: "CharsLower")
+            userDefaults.set(true, forKey: "CharsUpper")
+            userDefaults.set(true, forKey: "CharsNumbers")
+            userDefaults.set(true, forKey: "CharsSymbols")
+            userDefaults.set(6, forKey: "PassphraseNumWords")
+            userDefaults.set(" ", forKey: "PassphraseDelimiter")
+            userDefaults.set(false, forKey: "PassphraseObfuscate")
         }
         userDefaults.set(1+numPwGenModelInits, forKey: "numPwGenModelInits")
         self.updateModelSettings()
@@ -56,34 +71,72 @@ struct PwGenModel {
         }
     }
 
+    func generateCharsPassword() -> String {
+        let lowerChars = "abcdefghijklmnopqrstuvwxyz"
+        let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let numbers = "0123456789"
+        let symbols = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+        var charSet = ""
+        if self.charsLower! {
+            charSet += lowerChars
+        }
+        if self.charsUpper! {
+            charSet += upperChars
+        }
+        if self.charsNumbers! {
+            charSet += numbers
+        }
+        if self.charsSymbols! {
+            charSet += symbols
+        }
+        if charSet == "" {
+            return "Must include at least 1 of lowercase, uppercase, number, and symbol characters!"
+        }
+        return String((0..<self.charsLength!).map{_ in charSet.randomElement()!})
+    }
+
+    func generatePassphrase() -> String {
+        var passphrase = ""
+        for i in 0..<self.passphraseNumWords! {
+            var wordID = ""
+            for _ in 0..<5 {
+                let diceRoll = Int.random(in: 1...6)
+                wordID += String(diceRoll)
+            }
+            var word = wordList[wordID]!
+            if passphraseObfuscate == true {
+                for (symbol, obfuscation) in obfuscationTable {
+                    word = word.replacingOccurrences(of: symbol, with: obfuscation)
+                }
+            }
+            passphrase += word
+            if i < self.passphraseNumWords! - 1 {
+                passphrase += self.passphraseDelimiter!
+            }
+        }
+        return passphrase
+    }
+
     mutating func updateModelSettings() {
         let userDefaults = UserDefaults.standard
-        self.numWords = userDefaults.integer(forKey: "numWords")
-        self.delimiter = userDefaults.string(forKey: "delimiter")
-        self.obfuscate = userDefaults.integer(forKey: "obfuscate")
+        self.passwordType = userDefaults.integer(forKey: "PasswordType")
+        self.charsLength = userDefaults.integer(forKey: "CharsLength")
+        self.charsLower = userDefaults.bool(forKey: "CharsLower")
+        self.charsUpper = userDefaults.bool(forKey: "CharsUpper")
+        self.charsNumbers = userDefaults.bool(forKey: "CharsNumbers")
+        self.charsSymbols = userDefaults.bool(forKey: "CharsSymbols")
+        self.passphraseNumWords = userDefaults.integer(forKey: "PassphraseNumWords")
+        self.passphraseDelimiter = userDefaults.string(forKey: "PassphraseDelimiter")
+        self.passphraseObfuscate = userDefaults.bool(forKey: "PassphraseObfuscate")
     }
 
     mutating func generatePassword() -> String {
         self.updateModelSettings()
-        var password = ""
-        for i in 0..<self.numWords! {
-            var wordID = ""
-            for _ in 0..<5 {
-                let diceRoll = Int.random(in: 1...6)
-                wordID += "\(diceRoll)"
-            }
-            var word = wordList[wordID]!
-            if obfuscate == 1 {
-                for (symbol, leet) in obfuscationTable {
-                    word = word.replacingOccurrences(of: symbol, with: leet)
-                }
-            }
-            password += word
-            if i < self.numWords! - 1 {
-                password += self.delimiter!
-            }
+        if self.passwordType == 0 {
+            return self.generateCharsPassword()
+        } else {
+            return self.generatePassphrase()
         }
-        return password
     }
 }
 
