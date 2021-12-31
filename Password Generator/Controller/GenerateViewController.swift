@@ -8,6 +8,7 @@
 import UIKit
 
 class GenerateViewController: UIViewController {
+
     @IBOutlet weak var passwordDisplay: UITextView!
     var pwGenModel = PwGenModel()
 
@@ -34,17 +35,24 @@ class GenerateViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-
-        /*
-        if (segue.identifier == "goToSettings") {
-            let settingsVC = segue.destination as! SettingsViewController
-        }
-         */
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToSave", sender: self)
     }
-     */
+
+    @IBAction func savedButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToSaved", sender: self)
+    }
+
+    @IBAction func donateButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToDonate", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "goToSave") {
+            let saveVC = segue.destination as! SaveViewController
+            saveVC.password = passwordDisplay.text
+        }
+    }
+
 }
 

@@ -8,6 +8,7 @@
 import Foundation
 
 struct PwGenModel {
+
     var wordList: [String: String] = [:]
     var obfuscationTable: [String: String] = [:]
 
@@ -23,22 +24,33 @@ struct PwGenModel {
     var passphraseDelimiter: String?
     var passphraseObfuscate: Bool?
 
+    let defaultPasswordType = 0
+    let defaultCharsLength = 16
+    let defaultCharsLower = true
+    let defaultCharsUpper = true
+    let defaultCharsNumbers = true
+    let defaultCharsSymbols = true
+    let defaultPassphraseNumWords = 6
+    let defaultPassphraseDelimiter = " "
+    let defaultPassphraseObfuscate = false
+
     init() {
         let userDefaults = UserDefaults.standard
         let numPwGenModelInits = userDefaults.integer(forKey: "numPwGenModelInits")
         if numPwGenModelInits == 0 {
-            userDefaults.set(0, forKey: "PasswordType")
-            userDefaults.set(24, forKey: "CharsLength")
-            userDefaults.set(true, forKey: "CharsLower")
-            userDefaults.set(true, forKey: "CharsUpper")
-            userDefaults.set(true, forKey: "CharsNumbers")
-            userDefaults.set(true, forKey: "CharsSymbols")
-            userDefaults.set(6, forKey: "PassphraseNumWords")
-            userDefaults.set(" ", forKey: "PassphraseDelimiter")
-            userDefaults.set(false, forKey: "PassphraseObfuscate")
+            userDefaults.set(defaultPasswordType, forKey: "PasswordType")
+            userDefaults.set(defaultCharsLength, forKey: "CharsLength")
+            userDefaults.set(defaultCharsLower, forKey: "CharsLower")
+            userDefaults.set(defaultCharsUpper, forKey: "CharsUpper")
+            userDefaults.set(defaultCharsNumbers, forKey: "CharsNumbers")
+            userDefaults.set(defaultCharsSymbols, forKey: "CharsSymbols")
+            userDefaults.set(defaultPassphraseNumWords, forKey: "PassphraseNumWords")
+            userDefaults.set(defaultPassphraseDelimiter, forKey: "PassphraseDelimiter")
+            userDefaults.set(defaultPassphraseObfuscate, forKey: "PassphraseObfuscate")
         }
         userDefaults.set(1+numPwGenModelInits, forKey: "numPwGenModelInits")
         self.updateModelSettings()
+
         if let path = Bundle.main.path(forResource: "eff_large_wordlist", ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
@@ -54,6 +66,7 @@ struct PwGenModel {
                 print(error)
             }
         }
+
         if let path = Bundle.main.path(forResource: "obfuscation_table", ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
@@ -138,5 +151,6 @@ struct PwGenModel {
             return self.generatePassphrase()
         }
     }
+    
 }
 

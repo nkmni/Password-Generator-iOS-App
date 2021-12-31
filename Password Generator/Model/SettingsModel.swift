@@ -8,6 +8,7 @@
 import Foundation
 
 struct SettingsModel {
+
     // ----GETTERS---- //
 
     func getPasswordType() -> Int {
@@ -101,4 +102,5 @@ struct SettingsModel {
         let userDefaults = UserDefaults.standard
         userDefaults.set(obfuscate, forKey: "PassphraseObfuscate")
     }
+    
 }
