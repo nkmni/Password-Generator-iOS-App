@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92507E327A60C600069046E /* PasswordInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92507E227A60C600069046E /* PasswordInfo.swift */; };
+		E92507E627A61A800069046E /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92507E427A61A800069046E /* SavedTableViewCell.swift */; };
+		E92507E727A61A800069046E /* SavedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92507E527A61A800069046E /* SavedTableViewCell.xib */; };
+		E92507EB27A7117D0069046E /* DefaultPwGenSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92507EA27A7117D0069046E /* DefaultPwGenSettings.swift */; };
 		E95D6C20277D30200084A725 /* SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D6C1F277D30200084A725 /* SaveModel.swift */; };
 		E971864A275D9C4F00425021 /* PwGenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9718649275D9C4F00425021 /* PwGenModel.swift */; };
 		E971864C275DA16700425021 /* eff_large_wordlist.txt in Resources */ = {isa = PBXBuildFile; fileRef = E971864B275DA16700425021 /* eff_large_wordlist.txt */; };
@@ -25,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E92507E227A60C600069046E /* PasswordInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInfo.swift; sourceTree = "<group>"; };
+		E92507E427A61A800069046E /* SavedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedTableViewCell.swift; path = "Password Generator/View/SavedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		E92507E527A61A800069046E /* SavedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SavedTableViewCell.xib; path = "Password Generator/View/SavedTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		E92507EA27A7117D0069046E /* DefaultPwGenSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPwGenSettings.swift; sourceTree = "<group>"; };
 		E95D6C1F277D30200084A725 /* SaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveModel.swift; sourceTree = "<group>"; };
 		E9718649275D9C4F00425021 /* PwGenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwGenModel.swift; sourceTree = "<group>"; };
 		E971864B275DA16700425021 /* eff_large_wordlist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eff_large_wordlist.txt; sourceTree = "<group>"; };
@@ -63,6 +71,7 @@
 				E9EE1BD1277A760500283CCC /* SaveViewController.swift */,
 				E9EE1BD3277A77DA00283CCC /* DonateViewController.swift */,
 				E9EE1BD5277AAEFE00283CCC /* SavedViewController.swift */,
+				E92507E427A61A800069046E /* SavedTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -71,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				E9918366275AFA760050ED6A /* Main.storyboard */,
+				E92507E527A61A800069046E /* SavedTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -81,8 +91,10 @@
 				E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */,
 				E971864B275DA16700425021 /* eff_large_wordlist.txt */,
 				E9718649275D9C4F00425021 /* PwGenModel.swift */,
+				E92507EA27A7117D0069046E /* DefaultPwGenSettings.swift */,
 				E971864F2760342C00425021 /* SettingsModel.swift */,
 				E95D6C1F277D30200084A725 /* SaveModel.swift */,
+				E92507E227A60C600069046E /* PasswordInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +191,7 @@
 				E991836D275AFA7A0050ED6A /* LaunchScreen.storyboard in Resources */,
 				E991836A275AFA7A0050ED6A /* Assets.xcassets in Resources */,
 				E99DF72D2766B2F400B9EF55 /* obfuscation_table.txt in Resources */,
+				E92507E727A61A800069046E /* SavedTableViewCell.xib in Resources */,
 				E971864C275DA16700425021 /* eff_large_wordlist.txt in Resources */,
 				E9918368275AFA760050ED6A /* Main.storyboard in Resources */,
 			);
@@ -195,8 +208,11 @@
 				E9918365275AFA760050ED6A /* GenerateViewController.swift in Sources */,
 				E9EE1BD2277A760500283CCC /* SaveViewController.swift in Sources */,
 				E9EE1BD6277AAEFE00283CCC /* SavedViewController.swift in Sources */,
+				E92507E327A60C600069046E /* PasswordInfo.swift in Sources */,
+				E92507E627A61A800069046E /* SavedTableViewCell.swift in Sources */,
 				E95D6C20277D30200084A725 /* SaveModel.swift in Sources */,
 				E971864A275D9C4F00425021 /* PwGenModel.swift in Sources */,
+				E92507EB27A7117D0069046E /* DefaultPwGenSettings.swift in Sources */,
 				E9918361275AFA760050ED6A /* AppDelegate.swift in Sources */,
 				E971864E275E8EE000425021 /* SettingsViewController.swift in Sources */,
 				E9918363275AFA760050ED6A /* SceneDelegate.swift in Sources */,

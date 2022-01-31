@@ -33,8 +33,25 @@ struct SaveModel {
         if account == nil || username == nil || account == "" || username == "" {
             return false
         }
+        var savedPasswords: [PasswordInfo] = []
+        let passwordInfo = PasswordInfo(password: self.password!, account: self.account!, username: self.username!)
         let userDefaults = UserDefaults.standard
-        userDefaults.set(password, forKey: "Password:" + account! + ";" + username!)
+        if let data = userDefaults.data(forKey: "SavedPasswords") {
+            do {
+                let decoder = JSONDecoder()
+                savedPasswords = try decoder.decode([PasswordInfo].self, from: data)
+            } catch {
+                print("Could not decode saved passwords from UserDefaults (error: \(error)).")
+            }
+        }
+        savedPasswords.append(passwordInfo)
+        do {
+            let encoder = JSONEncoder()
+            let savedPasswordsData = try encoder.encode(savedPasswords)
+            userDefaults.set(savedPasswordsData, forKey: "SavedPasswords")
+        } catch {
+            print("Could not encode saved passwords (error: \(error))")
+        }
         return true
     }
     

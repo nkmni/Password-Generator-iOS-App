@@ -24,15 +24,15 @@ struct PwGenModel {
     var passphraseDelimiter: String?
     var passphraseObfuscate: Bool?
 
-    let defaultPasswordType = 0
-    let defaultCharsLength = 16
-    let defaultCharsLower = true
-    let defaultCharsUpper = true
-    let defaultCharsNumbers = true
-    let defaultCharsSymbols = true
-    let defaultPassphraseNumWords = 6
-    let defaultPassphraseDelimiter = " "
-    let defaultPassphraseObfuscate = false
+    let defaultPasswordType = DefaultSettings.passwordType
+    let defaultCharsLength = DefaultSettings.charsLength
+    let defaultCharsLower = DefaultSettings.charsLower
+    let defaultCharsUpper = DefaultSettings.charsUpper
+    let defaultCharsNumbers = DefaultSettings.charsNumbers
+    let defaultCharsSymbols = DefaultSettings.charsSymbols
+    let defaultPassphraseNumWords = DefaultSettings.passphraseNumWords
+    let defaultPassphraseDelimiter = DefaultSettings.passphraseDelimiter
+    let defaultPassphraseObfuscate = DefaultSettings.passphraseObfuscate
 
     init() {
         let userDefaults = UserDefaults.standard
