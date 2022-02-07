@@ -7,10 +7,11 @@
 
 import UIKit
 
-class GenerateViewController: UIViewController {
+class GeneratorViewController: UIViewController {
 
     @IBOutlet weak var passwordDisplay: UITextView!
-    var pwGenModel = PwGenModel()
+    
+    var generatorModel = GeneratorModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +19,7 @@ class GenerateViewController: UIViewController {
     }
 
     @IBAction func generateButtonPressed(_ sender: UIButton) {
-        let password = pwGenModel.generatePassword()
+        let password = generatorModel.generatePassword()
         passwordDisplay.text = password
     }
 

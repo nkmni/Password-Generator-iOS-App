@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Generate View Controller-->
+        <!--Generator View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="GenerateViewController" customModule="Password_Generator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GeneratorViewController" customModule="Password_Generator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,6 +226,9 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="viq-rm-9pS" firstAttribute="width" secondItem="St9-r6-Lch" secondAttribute="width" id="fZa-xr-RDN"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vfJ-0M-lp7">
                                                 <rect key="frame" x="0.0" y="104" width="388" height="58"/>
@@ -250,7 +253,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20l-ro-vEZ">
                                                                 <rect key="frame" x="140.66666666666669" y="0.0" width="124.66666666666669" height="58"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Done" cornerStyle="capsule">
+                                                                <buttonConfiguration key="configuration" style="plain" title="Save" cornerStyle="capsule">
                                                                     <backgroundConfiguration key="background">
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </backgroundConfiguration>

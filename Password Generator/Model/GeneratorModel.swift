@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PwGenModel {
+struct GeneratorModel {
 
     var wordList: [String: String] = [:]
     var obfuscationTable: [String: String] = [:]
@@ -24,15 +24,15 @@ struct PwGenModel {
     var passphraseDelimiter: String?
     var passphraseObfuscate: Bool?
 
-    let defaultPasswordType = DefaultSettings.passwordType
-    let defaultCharsLength = DefaultSettings.charsLength
-    let defaultCharsLower = DefaultSettings.charsLower
-    let defaultCharsUpper = DefaultSettings.charsUpper
-    let defaultCharsNumbers = DefaultSettings.charsNumbers
-    let defaultCharsSymbols = DefaultSettings.charsSymbols
-    let defaultPassphraseNumWords = DefaultSettings.passphraseNumWords
-    let defaultPassphraseDelimiter = DefaultSettings.passphraseDelimiter
-    let defaultPassphraseObfuscate = DefaultSettings.passphraseObfuscate
+    let defaultPasswordType = DefaultGeneratorSettings.passwordType
+    let defaultCharsLength = DefaultGeneratorSettings.charsLength
+    let defaultCharsLower = DefaultGeneratorSettings.charsLower
+    let defaultCharsUpper = DefaultGeneratorSettings.charsUpper
+    let defaultCharsNumbers = DefaultGeneratorSettings.charsNumbers
+    let defaultCharsSymbols = DefaultGeneratorSettings.charsSymbols
+    let defaultPassphraseNumWords = DefaultGeneratorSettings.passphraseNumWords
+    let defaultPassphraseDelimiter = DefaultGeneratorSettings.passphraseDelimiter
+    let defaultPassphraseObfuscate = DefaultGeneratorSettings.passphraseObfuscate
 
     init() {
         let userDefaults = UserDefaults.standard
@@ -90,27 +90,27 @@ struct PwGenModel {
         let numbers = "0123456789"
         let symbols = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
         var charSet = ""
-        if self.charsLower! {
+        if charsLower! {
             charSet += lowerChars
         }
-        if self.charsUpper! {
+        if charsUpper! {
             charSet += upperChars
         }
-        if self.charsNumbers! {
+        if charsNumbers! {
             charSet += numbers
         }
-        if self.charsSymbols! {
+        if charsSymbols! {
             charSet += symbols
         }
         if charSet == "" {
             return "Must include at least 1 of lowercase, uppercase, number, and symbol characters!"
         }
-        return String((0..<self.charsLength!).map{_ in charSet.randomElement()!})
+        return String((0..<charsLength!).map{_ in charSet.randomElement()!})
     }
 
     func generatePassphrase() -> String {
         var passphrase = ""
-        for i in 0..<self.passphraseNumWords! {
+        for i in 0..<passphraseNumWords! {
             var wordID = ""
             for _ in 0..<5 {
                 let diceRoll = Int.random(in: 1...6)
@@ -123,8 +123,8 @@ struct PwGenModel {
                 }
             }
             passphrase += word
-            if i < self.passphraseNumWords! - 1 {
-                passphrase += self.passphraseDelimiter!
+            if i < passphraseNumWords! - 1 {
+                passphrase += passphraseDelimiter!
             }
         }
         return passphrase
@@ -132,23 +132,23 @@ struct PwGenModel {
 
     mutating func updateModelSettings() {
         let userDefaults = UserDefaults.standard
-        self.passwordType = userDefaults.integer(forKey: "PasswordType")
-        self.charsLength = userDefaults.integer(forKey: "CharsLength")
-        self.charsLower = userDefaults.bool(forKey: "CharsLower")
-        self.charsUpper = userDefaults.bool(forKey: "CharsUpper")
-        self.charsNumbers = userDefaults.bool(forKey: "CharsNumbers")
-        self.charsSymbols = userDefaults.bool(forKey: "CharsSymbols")
-        self.passphraseNumWords = userDefaults.integer(forKey: "PassphraseNumWords")
-        self.passphraseDelimiter = userDefaults.string(forKey: "PassphraseDelimiter")
-        self.passphraseObfuscate = userDefaults.bool(forKey: "PassphraseObfuscate")
+        passwordType = userDefaults.integer(forKey: "PasswordType")
+        charsLength = userDefaults.integer(forKey: "CharsLength")
+        charsLower = userDefaults.bool(forKey: "CharsLower")
+        charsUpper = userDefaults.bool(forKey: "CharsUpper")
+        charsNumbers = userDefaults.bool(forKey: "CharsNumbers")
+        charsSymbols = userDefaults.bool(forKey: "CharsSymbols")
+        passphraseNumWords = userDefaults.integer(forKey: "PassphraseNumWords")
+        passphraseDelimiter = userDefaults.string(forKey: "PassphraseDelimiter")
+        passphraseObfuscate = userDefaults.bool(forKey: "PassphraseObfuscate")
     }
 
     mutating func generatePassword() -> String {
-        self.updateModelSettings()
-        if self.passwordType == 0 {
-            return self.generateCharsPassword()
+        updateModelSettings()
+        if passwordType == 0 {
+            return generateCharsPassword()
         } else {
-            return self.generatePassphrase()
+            return generatePassphrase()
         }
     }
     

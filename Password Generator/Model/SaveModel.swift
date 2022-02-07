@@ -42,6 +42,7 @@ struct SaveModel {
                 savedPasswords = try decoder.decode([PasswordInfo].self, from: data)
             } catch {
                 print("Could not decode saved passwords from UserDefaults (error: \(error)).")
+                return false
             }
         }
         savedPasswords.append(passwordInfo)
@@ -51,6 +52,7 @@ struct SaveModel {
             userDefaults.set(savedPasswordsData, forKey: "SavedPasswords")
         } catch {
             print("Could not encode saved passwords (error: \(error))")
+            return false
         }
         return true
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class SavedViewController: UIViewController {
 
     @IBOutlet weak var savedTableView: UITableView!
 
@@ -31,18 +31,13 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         savedTableView.delegate = self
         savedTableView.dataSource = self
 
-        let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         dismissKeyboardOnTap.cancelsTouchesInView = false
         view.addGestureRecognizer(dismissKeyboardOnTap)
     }
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        return true
     }
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -56,7 +51,18 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         self.dismiss(animated: true, completion: nil)
     }
+}
 
+
+extension SavedViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+}
+
+
+extension SavedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedPasswords.count
     }
@@ -84,5 +90,6 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
             savedTableView.endUpdates()
         }
     }
-
 }
+
+

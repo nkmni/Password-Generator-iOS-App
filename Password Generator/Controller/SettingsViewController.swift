@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITextFieldDelegate {
+class SettingsViewController: UIViewController {
 
     @IBOutlet weak var charactersSettingsStackView: UIStackView!
     @IBOutlet weak var passphraseSettingsStackView: UIStackView!
@@ -23,15 +23,15 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passphraseDelimiterTextField: UITextField!
     @IBOutlet weak var passphraseObfuscateSwitch: UISwitch!
 
-    let defaultPasswordType = DefaultSettings.passwordType
-    let defaultCharsLength = DefaultSettings.charsLength
-    let defaultCharsLower = DefaultSettings.charsLower
-    let defaultCharsUpper = DefaultSettings.charsUpper
-    let defaultCharsNumbers = DefaultSettings.charsNumbers
-    let defaultCharsSymbols = DefaultSettings.charsSymbols
-    let defaultPassphraseNumWords = DefaultSettings.passphraseNumWords
-    let defaultPassphraseDelimiter = DefaultSettings.passphraseDelimiter
-    let defaultPassphraseObfuscate = DefaultSettings.passphraseObfuscate
+    let defaultPasswordType = DefaultGeneratorSettings.passwordType
+    let defaultCharsLength = DefaultGeneratorSettings.charsLength
+    let defaultCharsLower = DefaultGeneratorSettings.charsLower
+    let defaultCharsUpper = DefaultGeneratorSettings.charsUpper
+    let defaultCharsNumbers = DefaultGeneratorSettings.charsNumbers
+    let defaultCharsSymbols = DefaultGeneratorSettings.charsSymbols
+    let defaultPassphraseNumWords = DefaultGeneratorSettings.passphraseNumWords
+    let defaultPassphraseDelimiter = DefaultGeneratorSettings.passphraseDelimiter
+    let defaultPassphraseObfuscate = DefaultGeneratorSettings.passphraseObfuscate
 
     var settingsModel = SettingsModel()
 
@@ -42,45 +42,34 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         passphraseNumWordsTextField.delegate = self
         passphraseDelimiterTextField.delegate = self
 
-        let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         dismissKeyboardOnTap.cancelsTouchesInView = false
         view.addGestureRecognizer(dismissKeyboardOnTap)
 
         let passwordTypeSwitchFont = UIFont.systemFont(ofSize: 18)
         passwordTypeSwitch.setTitleTextAttributes([NSAttributedString.Key.font: passwordTypeSwitchFont], for: .normal)
 
-        passwordTypeSwitch.selectedSegmentIndex = settingsModel.getPasswordType()
-        charsLengthTextField.text = String(settingsModel.getCharsLength())
-        charsLowerSwitch.isOn = settingsModel.getCharsLowercase()
-        charsUpperSwitch.isOn = settingsModel.getCharsUppercase()
-        charsNumbersSwitch.isOn = settingsModel.getCharsNumbers()
-        charsSymbolsSwitch.isOn = settingsModel.getCharsSymbols()
-        passphraseNumWordsTextField.text = String(settingsModel.getPassphraseNumWords())
-        passphraseDelimiterTextField.text = settingsModel.getPassphraseDelimiter()
-        passphraseObfuscateSwitch.isOn = settingsModel.getPassphraseObfuscate()
+        passwordTypeSwitch.selectedSegmentIndex = settingsModel.passwordType
+        charsLengthTextField.text = String(settingsModel.charsLength)
+        charsLowerSwitch.isOn = settingsModel.charsLower
+        charsUpperSwitch.isOn = settingsModel.charsUpper
+        charsNumbersSwitch.isOn = settingsModel.charsNumbers
+        charsSymbolsSwitch.isOn = settingsModel.charsSymbols
+        passphraseNumWordsTextField.text = String(settingsModel.passphraseNumWords)
+        passphraseDelimiterTextField.text = settingsModel.passphraseDelimiter
+        passphraseObfuscateSwitch.isOn = settingsModel.passphraseObfuscate
 
-        if settingsModel.getPasswordType() == 0 {
-            hideCharactersSettings(isHidden: false, alpha: 1.0)
-            hidePassphraseSettings(isHidden: true, alpha: 0.0)
-        } else {
-            hideCharactersSettings(isHidden: true, alpha: 0.0)
-            hidePassphraseSettings(isHidden: false, alpha: 1.0)
-        }
+        toggleHiddenSettings(selectedSegmentIndex: settingsModel.passwordType)
     }
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        return true
-    }
-
     func hideCharactersSettings(isHidden: Bool, alpha: CGFloat) {
         UIView.animate(
-            withDuration: 0.2,
-            delay: 0.0,
+            withDuration: 0,
+            delay: 0,
             options: [.curveEaseOut],
             animations: {
                 self.charactersSettingsStackView.isHidden = isHidden
@@ -90,8 +79,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     func hidePassphraseSettings(isHidden: Bool, alpha: CGFloat) {
         UIView.animate(
-            withDuration: 0.2,
-            delay: 0.0,
+            withDuration: 0,
+            delay: 0,
             options: [.curveEaseOut],
             animations: {
                 self.passphraseSettingsStackView.isHidden = isHidden
@@ -99,9 +88,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             })
     }
 
-    @IBAction func passwordTypeToggled(_ sender: UISegmentedControl) {
-        settingsModel.setPasswordType(sender.selectedSegmentIndex)
-        if sender.selectedSegmentIndex == 0 {
+    func toggleHiddenSettings(selectedSegmentIndex: Int) {
+        if selectedSegmentIndex == 0 {
             hideCharactersSettings(isHidden: false, alpha: 1.0)
             hidePassphraseSettings(isHidden: true, alpha: 0.0)
         } else {
@@ -110,63 +98,68 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func passwordTypeToggled(_ sender: UISegmentedControl) {
+        settingsModel.passwordType = sender.selectedSegmentIndex
+        toggleHiddenSettings(selectedSegmentIndex: sender.selectedSegmentIndex)
+    }
+
     @IBAction func charsLengthEdited(_ sender: UITextField) {
         if sender.text != "" {
-            settingsModel.setCharsLength(Int(sender.text!)!)
+            settingsModel.charsLength = Int(sender.text!)!
         } else {
-            settingsModel.setCharsLength(defaultCharsLength)
+            settingsModel.charsLength = defaultCharsLength
             charsLengthTextField.text = String(defaultCharsLength)
         }
     }
 
     @IBAction func charsLowerToggled(_ sender: UISwitch) {
-        settingsModel.setCharsLowercase(sender.isOn)
+        settingsModel.charsLower = sender.isOn
     }
 
     @IBAction func charsUpperToggled(_ sender: UISwitch) {
-        settingsModel.setCharsUppercase(sender.isOn)
+        settingsModel.charsUpper = sender.isOn
     }
 
     @IBAction func charsNumbersToggled(_ sender: UISwitch) {
-        settingsModel.setCharsNumbers(sender.isOn)
+        settingsModel.charsNumbers = sender.isOn
     }
 
     @IBAction func charsSymbolsToggled(_ sender: UISwitch) {
-        settingsModel.setCharsSymbols(sender.isOn)
+        settingsModel.charsSymbols = sender.isOn
     }
 
     @IBAction func passphraseNumWordsEdited(_ sender: UITextField) {
         if sender.text != "" {
-            settingsModel.setPassphraseNumWords(Int(sender.text!)!)
+            settingsModel.passphraseNumWords = Int(sender.text!)!
         } else {
-            settingsModel.setPassphraseNumWords(defaultPassphraseNumWords)
+            settingsModel.passphraseNumWords = defaultPassphraseNumWords
             passphraseNumWordsTextField.text = String(defaultPassphraseNumWords)
         }
     }
 
     @IBAction func passphraseDelimiterEdited(_ sender: UITextField) {
         if sender.text != "" {
-            settingsModel.setPassphraseDelimiter(sender.text!)
+            settingsModel.passphraseDelimiter = sender.text!
         } else {
-            settingsModel.setPassphraseDelimiter(defaultPassphraseDelimiter)
+            settingsModel.passphraseDelimiter = defaultPassphraseDelimiter
             passphraseDelimiterTextField.text = defaultPassphraseDelimiter
         }
     }
 
     @IBAction func passphraseObfuscateToggled(_ sender: UISwitch) {
-        settingsModel.setPassphraseObfuscate(sender.isOn)
+        settingsModel.passphraseObfuscate = sender.isOn
     }
 
     @IBAction func defaultButtonPressed(_ sender: UIButton) {
-        settingsModel.setPasswordType(defaultPasswordType)
-        settingsModel.setCharsLength(defaultCharsLength)
-        settingsModel.setCharsLowercase(defaultCharsLower)
-        settingsModel.setCharsUppercase(defaultCharsUpper)
-        settingsModel.setCharsNumbers(defaultCharsNumbers)
-        settingsModel.setCharsSymbols(defaultCharsSymbols)
-        settingsModel.setPassphraseNumWords(defaultPassphraseNumWords)
-        settingsModel.setPassphraseDelimiter(defaultPassphraseDelimiter)
-        settingsModel.setPassphraseObfuscate(defaultPassphraseObfuscate)
+        settingsModel.passwordType = defaultPasswordType
+        settingsModel.charsLength = defaultCharsLength
+        settingsModel.charsLower = defaultCharsLower
+        settingsModel.charsUpper = defaultCharsUpper
+        settingsModel.charsNumbers = defaultCharsNumbers
+        settingsModel.charsSymbols = defaultCharsSymbols
+        settingsModel.passphraseNumWords = defaultPassphraseNumWords
+        settingsModel.passphraseDelimiter = defaultPassphraseDelimiter
+        settingsModel.passphraseObfuscate = defaultPassphraseObfuscate
 
         passwordTypeSwitch.selectedSegmentIndex = defaultPasswordType
         charsLengthTextField.text = String(defaultCharsLength)
@@ -177,10 +170,18 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         passphraseNumWordsTextField.text = String(defaultPassphraseNumWords)
         passphraseDelimiterTextField.text = defaultPassphraseDelimiter
         passphraseObfuscateSwitch.isOn = defaultPassphraseObfuscate
+
+        toggleHiddenSettings(selectedSegmentIndex: passwordTypeSwitch.selectedSegmentIndex)
     }
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
 }

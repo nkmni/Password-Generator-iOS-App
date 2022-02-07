@@ -24,9 +24,9 @@ class SavedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func getIndexPathRow() -> Int? {
+    var indexPathRow: Int? {
         guard let superView = self.superview as? UITableView else {
-            print("(getIndexPathRow) superview is not a UITableView.")
+            print("(indexPathRow) superview is not a UITableView.")
             return nil
         }
         let indexPath = superView.indexPath(for: self)
@@ -34,11 +34,11 @@ class SavedTableViewCell: UITableViewCell {
     }
 
     @IBAction func accountTextFieldEdited(_ sender: UITextField) {
-        savedViewController?.savedPasswords[getIndexPathRow()!].account = accountTextField.text!
+        savedViewController?.savedPasswords[indexPathRow!].account = accountTextField.text!
     }
 
     @IBAction func usernameTextFieldEdited(_ sender: UITextField) {
-        savedViewController?.savedPasswords[getIndexPathRow()!].username = usernameTextField.text!
+        savedViewController?.savedPasswords[indexPathRow!].username = usernameTextField.text!
     }
 
     @IBAction func copyButtonPressed(_ sender: UIButton) {

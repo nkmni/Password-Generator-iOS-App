@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DefaultSettings {
+class DefaultGeneratorSettings {
     static let passwordType = 1
     static let charsLength = 8
     static let charsLower = true

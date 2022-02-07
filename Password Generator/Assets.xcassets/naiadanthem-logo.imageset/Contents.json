@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "inhalemeink-logo.png",
+      "filename" : "naiadanthem-logo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "inhalemeink-logo@2x.png",
+      "filename" : "naiadanthem-logo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "inhalemeink-logo@3x.png",
+      "filename" : "naiadanthem-logo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

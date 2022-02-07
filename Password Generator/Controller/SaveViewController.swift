@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SaveViewController: UIViewController, UITextFieldDelegate {
+class SaveViewController: UIViewController {
 
     @IBOutlet weak var passwordDisplay: UITextView!
     @IBOutlet weak var accountTextField: UITextField!
@@ -24,7 +24,7 @@ class SaveViewController: UIViewController, UITextFieldDelegate {
         accountTextField.delegate = self
         usernameTextField.delegate = self
 
-        let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         dismissKeyboardOnTap.cancelsTouchesInView = false
         view.addGestureRecognizer(dismissKeyboardOnTap)
 
@@ -39,11 +39,6 @@ class SaveViewController: UIViewController, UITextFieldDelegate {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        return true
     }
 
     @IBAction func accountEdited(_ sender: UITextField) {
@@ -69,3 +64,12 @@ class SaveViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
+
+
+extension SaveViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+}
+
