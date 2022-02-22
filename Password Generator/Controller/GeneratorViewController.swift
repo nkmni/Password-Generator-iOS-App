@@ -10,21 +10,54 @@ import UIKit
 class GeneratorViewController: UIViewController {
 
     @IBOutlet weak var passwordDisplay: UITextView!
-    
+    @IBOutlet weak var unobfuscatedLabel: UILabel!
+
     var generatorModel = GeneratorModel()
+    var settingsModel = SettingsModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        toggleUnobfuscatedLabel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        toggleUnobfuscatedLabel()
+    }
+
+    func hideUnobfuscatedLabel(isHidden: Bool, alpha: CGFloat) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            options: [.curveEaseOut],
+            animations: {
+                self.unobfuscatedLabel.isHidden = isHidden
+                self.unobfuscatedLabel.alpha = alpha
+            })
+    }
+
+    func toggleUnobfuscatedLabel() {
+        if settingsModel.passwordType == 0 || !settingsModel.passphraseObfuscate {
+            hideUnobfuscatedLabel(isHidden: true, alpha: 0.0)
+        } else {
+            hideUnobfuscatedLabel(isHidden: false, alpha: 1.0)
+        }
     }
 
     @IBAction func generateButtonPressed(_ sender: UIButton) {
-        let password = generatorModel.generatePassword()
+        unobfuscatedLabel.text = ""
+
+        let (password, unobfuscatedPassword) = generatorModel.generatePassword()
         passwordDisplay.text = password
+
+        if settingsModel.passphraseObfuscate {
+            unobfuscatedLabel.text = unobfuscatedPassword
+        }
     }
 
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToSettings", sender: self)
+        self.performSegue(withIdentifier: K.Segues.goToSettings, sender: self)
     }
 
     @IBAction func copyButtonPressed(_ sender: UIButton) {
@@ -37,19 +70,19 @@ class GeneratorViewController: UIViewController {
     }
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToSave", sender: self)
+        self.performSegue(withIdentifier: K.Segues.goToSave, sender: self)
     }
 
     @IBAction func savedButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToSaved", sender: self)
+        self.performSegue(withIdentifier: K.Segues.goToSaved, sender: self)
     }
 
     @IBAction func donateButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToDonate", sender: self)
+        self.performSegue(withIdentifier: K.Segues.goToDonate, sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "goToSave") {
+        if (segue.identifier == K.Segues.goToSave) {
             let saveVC = segue.destination as! SaveViewController
             saveVC.password = passwordDisplay.text
         }

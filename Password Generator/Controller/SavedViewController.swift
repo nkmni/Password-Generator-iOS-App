@@ -17,7 +17,7 @@ class SavedViewController: UIViewController {
         super.viewDidLoad()
 
         let userDefaults = UserDefaults.standard
-        if let data = userDefaults.data(forKey: "SavedPasswords") {
+        if let data = userDefaults.data(forKey: K.UserDefaultsKeys.savedPasswords) {
             do {
                 let decoder = JSONDecoder()
                 savedPasswords = try decoder.decode([PasswordInfo].self, from: data)
@@ -26,8 +26,8 @@ class SavedViewController: UIViewController {
             }
         }
 
-        let nib = UINib(nibName: "SavedTableViewCell", bundle: nil)
-        savedTableView.register(nib, forCellReuseIdentifier: "SavedTableViewCell")
+        let nib = UINib(nibName: K.Nibs.savedCell, bundle: nil)
+        savedTableView.register(nib, forCellReuseIdentifier: K.Nibs.savedCell)
         savedTableView.delegate = self
         savedTableView.dataSource = self
 
@@ -45,7 +45,7 @@ class SavedViewController: UIViewController {
         do {
             let encoder = JSONEncoder()
             let savedPasswordsData = try encoder.encode(savedPasswords)
-            userDefaults.set(savedPasswordsData, forKey: "SavedPasswords")
+            userDefaults.set(savedPasswordsData, forKey: K.UserDefaultsKeys.savedPasswords)
         } catch {
             print("Could not encode saved passwords (error: \(error))")
         }
@@ -64,11 +64,13 @@ extension SavedViewController: UITextFieldDelegate {
 
 extension SavedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print("SavedViewController: reached tableView numberOfRowsInSection")
         return savedPasswords.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SavedTableViewCell", for: indexPath) as! SavedTableViewCell
+        //print("SavedViewController: reached tableView cellForRowAt")
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.Nibs.savedCell, for: indexPath) as! SavedTableViewCell
         cell.savedViewController = self
         cell.accountTextField.delegate = self
         cell.usernameTextField.delegate = self
@@ -84,10 +86,10 @@ extension SavedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            savedTableView.beginUpdates()
+            tableView.beginUpdates()
             savedPasswords.remove(at: indexPath.row)
-            savedTableView.deleteRows(at: [indexPath], with: .fade)
-            savedTableView.endUpdates()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
         }
     }
 }

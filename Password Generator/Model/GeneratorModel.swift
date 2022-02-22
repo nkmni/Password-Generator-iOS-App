@@ -10,48 +10,55 @@ import Foundation
 struct GeneratorModel {
 
     var wordList: [String: String] = [:]
-    var obfuscationTable: [String: String] = [:]
+//    var obfuscationRules: [String: String] = [:]
 
-    var passwordType: Int?
+    var settingsModel = SettingsModel()
 
-    var charsLength: Int?
-    var charsLower: Bool?
-    var charsUpper: Bool?
-    var charsNumbers: Bool?
-    var charsSymbols: Bool?
+//    var passwordType: Int?
+//    var charsLength: Int?
+//    var charsLower: Bool?
+//    var charsUpper: Bool?
+//    var charsNumbers: Bool?
+//    var charsSymbols: Bool?
+//    var passphraseNumWords: Int?
+//    var passphraseDelimiter: String?
+//    var passphraseObfuscate: Bool?
 
-    var passphraseNumWords: Int?
-    var passphraseDelimiter: String?
-    var passphraseObfuscate: Bool?
-
-    let defaultPasswordType = DefaultGeneratorSettings.passwordType
-    let defaultCharsLength = DefaultGeneratorSettings.charsLength
-    let defaultCharsLower = DefaultGeneratorSettings.charsLower
-    let defaultCharsUpper = DefaultGeneratorSettings.charsUpper
-    let defaultCharsNumbers = DefaultGeneratorSettings.charsNumbers
-    let defaultCharsSymbols = DefaultGeneratorSettings.charsSymbols
-    let defaultPassphraseNumWords = DefaultGeneratorSettings.passphraseNumWords
-    let defaultPassphraseDelimiter = DefaultGeneratorSettings.passphraseDelimiter
-    let defaultPassphraseObfuscate = DefaultGeneratorSettings.passphraseObfuscate
+    let defaultPasswordType = K.DefaultSettings.passwordType
+    let defaultCharsLength = K.DefaultSettings.charsLength
+    let defaultCharsLower = K.DefaultSettings.charsLower
+    let defaultCharsUpper = K.DefaultSettings.charsUpper
+    let defaultCharsNumbers = K.DefaultSettings.charsNumbers
+    let defaultCharsSymbols = K.DefaultSettings.charsSymbols
+    let defaultPassphraseNumWords = K.DefaultSettings.passphraseNumWords
+    let defaultPassphraseDelimiter = K.DefaultSettings.passphraseDelimiter
+    let defaultPassphraseObfuscate = K.DefaultSettings.passphraseObfuscate
+    let defaultPassphraseObfuscationRules = K.DefaultSettings.passphraseObfuscationRules
 
     init() {
         let userDefaults = UserDefaults.standard
-        let numPwGenModelInits = userDefaults.integer(forKey: "numPwGenModelInits")
+        let numPwGenModelInits = userDefaults.integer(forKey: K.UserDefaultsKeys.numGeneratorModelInits)
         if numPwGenModelInits == 0 {
-            userDefaults.set(defaultPasswordType, forKey: "PasswordType")
-            userDefaults.set(defaultCharsLength, forKey: "CharsLength")
-            userDefaults.set(defaultCharsLower, forKey: "CharsLower")
-            userDefaults.set(defaultCharsUpper, forKey: "CharsUpper")
-            userDefaults.set(defaultCharsNumbers, forKey: "CharsNumbers")
-            userDefaults.set(defaultCharsSymbols, forKey: "CharsSymbols")
-            userDefaults.set(defaultPassphraseNumWords, forKey: "PassphraseNumWords")
-            userDefaults.set(defaultPassphraseDelimiter, forKey: "PassphraseDelimiter")
-            userDefaults.set(defaultPassphraseObfuscate, forKey: "PassphraseObfuscate")
+            userDefaults.set(defaultPasswordType, forKey: K.UserDefaultsKeys.passwordType)
+            userDefaults.set(defaultCharsLength, forKey: K.UserDefaultsKeys.charsLength)
+            userDefaults.set(defaultCharsLower, forKey: K.UserDefaultsKeys.charsLower)
+            userDefaults.set(defaultCharsUpper, forKey: K.UserDefaultsKeys.charsUpper)
+            userDefaults.set(defaultCharsNumbers, forKey: K.UserDefaultsKeys.charsNumbers)
+            userDefaults.set(defaultCharsSymbols, forKey: K.UserDefaultsKeys.charsSymbols)
+            userDefaults.set(defaultPassphraseNumWords, forKey: K.UserDefaultsKeys.passphraseNumWords)
+            userDefaults.set(defaultPassphraseDelimiter, forKey: K.UserDefaultsKeys.passphraseDelimiter)
+            userDefaults.set(defaultPassphraseObfuscate, forKey: K.UserDefaultsKeys.passphraseObfuscate)
+            do {
+                let encoder = JSONEncoder()
+                let obfuscationRulesData = try encoder.encode(defaultPassphraseObfuscationRules)
+                userDefaults.set(obfuscationRulesData, forKey: K.UserDefaultsKeys.passphraseObfuscationRules)
+            } catch {
+                print("Could not encode obfuscation rules (error: \(error))")
+            }
         }
-        userDefaults.set(1+numPwGenModelInits, forKey: "numPwGenModelInits")
-        self.updateModelSettings()
+        userDefaults.set(1+numPwGenModelInits, forKey: K.UserDefaultsKeys.numGeneratorModelInits)
 
-        if let path = Bundle.main.path(forResource: "eff_large_wordlist", ofType: "txt") {
+        if let path = Bundle.main.path(forResource: K.Filenames.wordList, ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
                 let lines = data.components(separatedBy: .newlines)
@@ -66,87 +73,81 @@ struct GeneratorModel {
                 print(error)
             }
         }
-
-        if let path = Bundle.main.path(forResource: "obfuscation_table", ofType: "txt") {
-            do {
-                let data = try String(contentsOfFile: path, encoding: .utf8)
-                let lines = data.components(separatedBy: .newlines)
-                for line in lines {
-                    if line == "" {
-                        continue
-                    }
-                    let symbolToLeet = line.components(separatedBy: " ")
-                    self.obfuscationTable[symbolToLeet[0]] = symbolToLeet[1]
-                }
-            } catch {
-                print(error)
-            }
-        }
     }
 
     func generateCharsPassword() -> String {
-        let lowerChars = "abcdefghijklmnopqrstuvwxyz"
-        let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let numbers = "0123456789"
-        let symbols = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
         var charSet = ""
-        if charsLower! {
-            charSet += lowerChars
+        if settingsModel.charsLower {
+            charSet += K.CharSets.lower
         }
-        if charsUpper! {
-            charSet += upperChars
+        if settingsModel.charsUpper {
+            charSet += K.CharSets.upper
         }
-        if charsNumbers! {
-            charSet += numbers
+        if settingsModel.charsNumbers {
+            charSet += K.CharSets.numbers
         }
-        if charsSymbols! {
-            charSet += symbols
+        if settingsModel.charsSymbols {
+            charSet += K.CharSets.symbols
         }
         if charSet == "" {
             return "Must include at least 1 of lowercase, uppercase, number, and symbol characters!"
         }
-        return String((0..<charsLength!).map{_ in charSet.randomElement()!})
+        return String((0..<settingsModel.charsLength).map{_ in charSet.randomElement()!})
     }
 
-    func generatePassphrase() -> String {
+    func generatePassphrase() -> (String, String) {
         var passphrase = ""
-        for i in 0..<passphraseNumWords! {
+        var unobfuscatedPassphrase = ""
+        for i in 0..<settingsModel.passphraseNumWords {
             var wordID = ""
             for _ in 0..<5 {
                 let diceRoll = Int.random(in: 1...6)
                 wordID += String(diceRoll)
             }
-            var word = wordList[wordID]!
-            if passphraseObfuscate == true {
-                for (symbol, obfuscation) in obfuscationTable {
-                    word = word.replacingOccurrences(of: symbol, with: obfuscation)
+            let word = wordList[wordID]!
+            var obfuscatedWord = word
+            if settingsModel.passphraseObfuscate == true {
+                for (symbol, obfuscation) in settingsModel.passphraseObfuscationRules {
+                    if obfuscation == "n/a" {
+                        continue
+                    }
+                    obfuscatedWord = obfuscatedWord.replacingOccurrences(of: symbol, with: obfuscation)
                 }
             }
-            passphrase += word
-            if i < passphraseNumWords! - 1 {
-                passphrase += passphraseDelimiter!
+            passphrase += obfuscatedWord
+            unobfuscatedPassphrase += word
+            if i < settingsModel.passphraseNumWords - 1 {
+                passphrase += settingsModel.passphraseDelimiter
+                unobfuscatedPassphrase += settingsModel.passphraseDelimiter
             }
         }
-        return passphrase
+        return (passphrase, unobfuscatedPassphrase)
     }
 
-    mutating func updateModelSettings() {
-        let userDefaults = UserDefaults.standard
-        passwordType = userDefaults.integer(forKey: "PasswordType")
-        charsLength = userDefaults.integer(forKey: "CharsLength")
-        charsLower = userDefaults.bool(forKey: "CharsLower")
-        charsUpper = userDefaults.bool(forKey: "CharsUpper")
-        charsNumbers = userDefaults.bool(forKey: "CharsNumbers")
-        charsSymbols = userDefaults.bool(forKey: "CharsSymbols")
-        passphraseNumWords = userDefaults.integer(forKey: "PassphraseNumWords")
-        passphraseDelimiter = userDefaults.string(forKey: "PassphraseDelimiter")
-        passphraseObfuscate = userDefaults.bool(forKey: "PassphraseObfuscate")
-    }
+//    mutating func updateModelSettings() {
+//        let userDefaults = UserDefaults.standard
+//        passwordType = userDefaults.integer(forKey: K.UserDefaultsKeys.passwordType)
+//        charsLength = userDefaults.integer(forKey: K.UserDefaultsKeys.charsLength)
+//        charsLower = userDefaults.bool(forKey: K.UserDefaultsKeys.charsLower)
+//        charsUpper = userDefaults.bool(forKey: K.UserDefaultsKeys.charsUpper)
+//        charsNumbers = userDefaults.bool(forKey: K.UserDefaultsKeys.charsNumbers)
+//        charsSymbols = userDefaults.bool(forKey: K.UserDefaultsKeys.charsSymbols)
+//        passphraseNumWords = userDefaults.integer(forKey: K.UserDefaultsKeys.passphraseNumWords)
+//        passphraseDelimiter = userDefaults.string(forKey: K.UserDefaultsKeys.passphraseDelimiter)
+//        passphraseObfuscate = userDefaults.bool(forKey: K.UserDefaultsKeys.passphraseObfuscate)
+//        if let data = userDefaults.data(forKey: K.UserDefaultsKeys.passphraseObfuscationRules) {
+//            do {
+//                let decoder = JSONDecoder()
+//                obfuscationRules = try decoder.decode([String: String].self, from: data)
+//            } catch {
+//                print("Could not decode obfuscation rules from UserDefaults (error: \(error)).")
+//            }
+//        }
+//    }
 
-    mutating func generatePassword() -> String {
-        updateModelSettings()
-        if passwordType == 0 {
-            return generateCharsPassword()
+    mutating func generatePassword() -> (String, String) {
+        if settingsModel.passwordType == 0 {
+            return (generateCharsPassword(), "")
         } else {
             return generatePassphrase()
         }

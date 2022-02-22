@@ -8,6 +8,7 @@
 import UIKit
 
 class SavedTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!

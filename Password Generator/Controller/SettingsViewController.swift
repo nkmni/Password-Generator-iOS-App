@@ -23,15 +23,18 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var passphraseDelimiterTextField: UITextField!
     @IBOutlet weak var passphraseObfuscateSwitch: UISwitch!
 
-    let defaultPasswordType = DefaultGeneratorSettings.passwordType
-    let defaultCharsLength = DefaultGeneratorSettings.charsLength
-    let defaultCharsLower = DefaultGeneratorSettings.charsLower
-    let defaultCharsUpper = DefaultGeneratorSettings.charsUpper
-    let defaultCharsNumbers = DefaultGeneratorSettings.charsNumbers
-    let defaultCharsSymbols = DefaultGeneratorSettings.charsSymbols
-    let defaultPassphraseNumWords = DefaultGeneratorSettings.passphraseNumWords
-    let defaultPassphraseDelimiter = DefaultGeneratorSettings.passphraseDelimiter
-    let defaultPassphraseObfuscate = DefaultGeneratorSettings.passphraseObfuscate
+    @IBOutlet weak var obfuscationTableView: UITableView!
+
+    let defaultPasswordType = K.DefaultSettings.passwordType
+    let defaultCharsLength = K.DefaultSettings.charsLength
+    let defaultCharsLower = K.DefaultSettings.charsLower
+    let defaultCharsUpper = K.DefaultSettings.charsUpper
+    let defaultCharsNumbers = K.DefaultSettings.charsNumbers
+    let defaultCharsSymbols = K.DefaultSettings.charsSymbols
+    let defaultPassphraseNumWords = K.DefaultSettings.passphraseNumWords
+    let defaultPassphraseDelimiter = K.DefaultSettings.passphraseDelimiter
+    let defaultPassphraseObfuscate = K.DefaultSettings.passphraseObfuscate
+    let defaultPassphraseObfuscationRules = K.DefaultSettings.passphraseObfuscationRules
 
     var settingsModel = SettingsModel()
 
@@ -41,6 +44,11 @@ class SettingsViewController: UIViewController {
         charsLengthTextField.delegate = self
         passphraseNumWordsTextField.delegate = self
         passphraseDelimiterTextField.delegate = self
+
+        let nib = UINib(nibName: K.Nibs.obfuscationCell, bundle: nil)
+        obfuscationTableView.register(nib, forCellReuseIdentifier: K.Nibs.obfuscationCell)
+        obfuscationTableView.delegate = self
+        obfuscationTableView.dataSource = self
 
         let dismissKeyboardOnTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         dismissKeyboardOnTap.cancelsTouchesInView = false
@@ -98,6 +106,12 @@ class SettingsViewController: UIViewController {
         }
     }
 
+    func alertNeedChars() {
+        let alert = UIAlertController(title: "Must include at least 1 of lowercase, uppercase, number, or symbol characters!", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     @IBAction func passwordTypeToggled(_ sender: UISegmentedControl) {
         settingsModel.passwordType = sender.selectedSegmentIndex
         toggleHiddenSettings(selectedSegmentIndex: sender.selectedSegmentIndex)
@@ -114,18 +128,38 @@ class SettingsViewController: UIViewController {
 
     @IBAction func charsLowerToggled(_ sender: UISwitch) {
         settingsModel.charsLower = sender.isOn
+        if settingsModel.noCharsSelected() {
+            alertNeedChars()
+            sender.isOn = true
+            settingsModel.charsLower = sender.isOn
+        }
     }
 
     @IBAction func charsUpperToggled(_ sender: UISwitch) {
         settingsModel.charsUpper = sender.isOn
+        if settingsModel.noCharsSelected() {
+            alertNeedChars()
+            sender.isOn = true
+            settingsModel.charsUpper = sender.isOn
+        }
     }
 
     @IBAction func charsNumbersToggled(_ sender: UISwitch) {
         settingsModel.charsNumbers = sender.isOn
+        if settingsModel.noCharsSelected() {
+            alertNeedChars()
+            sender.isOn = true
+            settingsModel.charsNumbers = sender.isOn
+        }
     }
 
     @IBAction func charsSymbolsToggled(_ sender: UISwitch) {
         settingsModel.charsSymbols = sender.isOn
+        if settingsModel.noCharsSelected() {
+            alertNeedChars()
+            sender.isOn = true
+            settingsModel.charsSymbols = sender.isOn
+        }
     }
 
     @IBAction func passphraseNumWordsEdited(_ sender: UITextField) {
@@ -160,6 +194,7 @@ class SettingsViewController: UIViewController {
         settingsModel.passphraseNumWords = defaultPassphraseNumWords
         settingsModel.passphraseDelimiter = defaultPassphraseDelimiter
         settingsModel.passphraseObfuscate = defaultPassphraseObfuscate
+        settingsModel.passphraseObfuscationRules = defaultPassphraseObfuscationRules
 
         passwordTypeSwitch.selectedSegmentIndex = defaultPasswordType
         charsLengthTextField.text = String(defaultCharsLength)
@@ -170,6 +205,7 @@ class SettingsViewController: UIViewController {
         passphraseNumWordsTextField.text = String(defaultPassphraseNumWords)
         passphraseDelimiterTextField.text = defaultPassphraseDelimiter
         passphraseObfuscateSwitch.isOn = defaultPassphraseObfuscate
+        obfuscationTableView.reloadData()
 
         toggleHiddenSettings(selectedSegmentIndex: passwordTypeSwitch.selectedSegmentIndex)
     }
@@ -183,5 +219,19 @@ extension SettingsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
+    }
+}
+
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settingsModel.passphraseObfuscationRules.keys.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.Nibs.obfuscationCell, for: indexPath) as! ObfuscationTableViewCell
+        cell.settingsViewController = self
+        cell.letterLabel.text = String(settingsModel.letters[indexPath.row])
+        cell.replacementPickerView.selectRow(ObfuscationTableViewCell.replacementPickerViewData.firstIndex(of: settingsModel.passphraseObfuscationRules[String(settingsModel.letters[indexPath.row])]!)!, inComponent: 0, animated: false)
+        return cell
     }
 }

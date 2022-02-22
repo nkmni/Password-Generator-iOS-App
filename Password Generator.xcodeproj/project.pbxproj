@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90252A827B59EBF00F1B5D0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E90252A727B59EBF00F1B5D0 /* IQKeyboardManagerSwift */; };
+		E90252AC27B6EF0400F1B5D0 /* ObfuscationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90252AA27B6EF0400F1B5D0 /* ObfuscationTableViewCell.xib */; };
+		E90252AE27B6EF3200F1B5D0 /* ObfuscationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90252AD27B6EF3200F1B5D0 /* ObfuscationTableViewCell.swift */; };
 		E92507E327A60C600069046E /* PasswordInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92507E227A60C600069046E /* PasswordInfo.swift */; };
 		E92507E727A61A800069046E /* SavedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92507E527A61A800069046E /* SavedTableViewCell.xib */; };
-		E92507EB27A7117D0069046E /* DefaultGeneratorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92507EA27A7117D0069046E /* DefaultGeneratorSettings.swift */; };
+		E92507EB27A7117D0069046E /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92507EA27A7117D0069046E /* K.swift */; };
 		E95D6C20277D30200084A725 /* SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D6C1F277D30200084A725 /* SaveModel.swift */; };
 		E971864A275D9C4F00425021 /* GeneratorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9718649275D9C4F00425021 /* GeneratorModel.swift */; };
 		E971864C275DA16700425021 /* eff_large_wordlist.txt in Resources */ = {isa = PBXBuildFile; fileRef = E971864B275DA16700425021 /* eff_large_wordlist.txt */; };
@@ -22,6 +25,9 @@
 		E991836A275AFA7A0050ED6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9918369275AFA7A0050ED6A /* Assets.xcassets */; };
 		E991836D275AFA7A0050ED6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E991836B275AFA7A0050ED6A /* LaunchScreen.storyboard */; };
 		E99DF72D2766B2F400B9EF55 /* obfuscation_table.txt in Resources */ = {isa = PBXBuildFile; fileRef = E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */; };
+		E9A07E4027C1C85800126FDA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07E3F27C1C85800126FDA /* StoreKit.framework */; };
+		E9C771D327C2EA630044D661 /* DonateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C771D127C2EA630044D661 /* DonateTableViewCell.swift */; };
+		E9C771D427C2EA630044D661 /* DonateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C771D227C2EA630044D661 /* DonateTableViewCell.xib */; };
 		E9EBDF4E27A792B8003BDC5F /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBDF4D27A792B8003BDC5F /* SavedTableViewCell.swift */; };
 		E9EE1BD2277A760500283CCC /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE1BD1277A760500283CCC /* SaveViewController.swift */; };
 		E9EE1BD4277A77DA00283CCC /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE1BD3277A77DA00283CCC /* DonateViewController.swift */; };
@@ -29,9 +35,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E90252AA27B6EF0400F1B5D0 /* ObfuscationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObfuscationTableViewCell.xib; sourceTree = "<group>"; };
+		E90252AD27B6EF3200F1B5D0 /* ObfuscationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObfuscationTableViewCell.swift; sourceTree = "<group>"; };
 		E92507E227A60C600069046E /* PasswordInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInfo.swift; sourceTree = "<group>"; };
 		E92507E527A61A800069046E /* SavedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SavedTableViewCell.xib; path = "Password Generator/View/SavedTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
-		E92507EA27A7117D0069046E /* DefaultGeneratorSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGeneratorSettings.swift; sourceTree = "<group>"; };
+		E92507EA27A7117D0069046E /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		E95D6C1F277D30200084A725 /* SaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveModel.swift; sourceTree = "<group>"; };
 		E9718649275D9C4F00425021 /* GeneratorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorModel.swift; sourceTree = "<group>"; };
 		E971864B275DA16700425021 /* eff_large_wordlist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eff_large_wordlist.txt; sourceTree = "<group>"; };
@@ -46,6 +54,9 @@
 		E991836C275AFA7A0050ED6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E991836E275AFA7A0050ED6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = obfuscation_table.txt; sourceTree = "<group>"; };
+		E9A07E3F27C1C85800126FDA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E9C771D127C2EA630044D661 /* DonateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateTableViewCell.swift; sourceTree = "<group>"; };
+		E9C771D227C2EA630044D661 /* DonateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonateTableViewCell.xib; sourceTree = "<group>"; };
 		E9EBDF4D27A792B8003BDC5F /* SavedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedTableViewCell.swift; sourceTree = "<group>"; };
 		E9EE1BD1277A760500283CCC /* SaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
 		E9EE1BD3277A77DA00283CCC /* DonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90252A827B59EBF00F1B5D0 /* IQKeyboardManagerSwift in Frameworks */,
+				E9A07E4027C1C85800126FDA /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +79,14 @@
 		E9718644275D9B7C00425021 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E9EBDF4D27A792B8003BDC5F /* SavedTableViewCell.swift */,
 				E9918364275AFA760050ED6A /* GeneratorViewController.swift */,
-				E971864D275E8EDF00425021 /* SettingsViewController.swift */,
 				E9EE1BD1277A760500283CCC /* SaveViewController.swift */,
 				E9EE1BD3277A77DA00283CCC /* DonateViewController.swift */,
+				E9C771D127C2EA630044D661 /* DonateTableViewCell.swift */,
+				E971864D275E8EDF00425021 /* SettingsViewController.swift */,
+				E90252AD27B6EF3200F1B5D0 /* ObfuscationTableViewCell.swift */,
 				E9EE1BD5277AAEFE00283CCC /* SavedViewController.swift */,
+				E9EBDF4D27A792B8003BDC5F /* SavedTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -82,6 +97,8 @@
 				E991836B275AFA7A0050ED6A /* LaunchScreen.storyboard */,
 				E9918366275AFA760050ED6A /* Main.storyboard */,
 				E92507E527A61A800069046E /* SavedTableViewCell.xib */,
+				E90252AA27B6EF0400F1B5D0 /* ObfuscationTableViewCell.xib */,
+				E9C771D227C2EA630044D661 /* DonateTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -92,7 +109,7 @@
 				E99DF72C2766B2F300B9EF55 /* obfuscation_table.txt */,
 				E971864B275DA16700425021 /* eff_large_wordlist.txt */,
 				E9718649275D9C4F00425021 /* GeneratorModel.swift */,
-				E92507EA27A7117D0069046E /* DefaultGeneratorSettings.swift */,
+				E92507EA27A7117D0069046E /* K.swift */,
 				E971864F2760342C00425021 /* SettingsModel.swift */,
 				E95D6C1F277D30200084A725 /* SaveModel.swift */,
 				E92507E227A60C600069046E /* PasswordInfo.swift */,
@@ -105,6 +122,7 @@
 			children = (
 				E991835F275AFA760050ED6A /* Password Generator */,
 				E991835E275AFA760050ED6A /* Products */,
+				E9A07E3E27C1C85800126FDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +148,14 @@
 			path = "Password Generator";
 			sourceTree = "<group>";
 		};
+		E9A07E3E27C1C85800126FDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9A07E3F27C1C85800126FDA /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +172,9 @@
 			dependencies = (
 			);
 			name = "Password Generator";
+			packageProductDependencies = (
+				E90252A727B59EBF00F1B5D0 /* IQKeyboardManagerSwift */,
+			);
 			productName = "Password Generator";
 			productReference = E991835D275AFA760050ED6A /* Password Generator.app */;
 			productType = "com.apple.product-type.application";
@@ -174,6 +203,9 @@
 				Base,
 			);
 			mainGroup = E9918354275AFA760050ED6A;
+			packageReferences = (
+				E90252A627B59EBF00F1B5D0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = E991835E275AFA760050ED6A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -190,9 +222,11 @@
 			files = (
 				E991836D275AFA7A0050ED6A /* LaunchScreen.storyboard in Resources */,
 				E991836A275AFA7A0050ED6A /* Assets.xcassets in Resources */,
+				E90252AC27B6EF0400F1B5D0 /* ObfuscationTableViewCell.xib in Resources */,
 				E99DF72D2766B2F400B9EF55 /* obfuscation_table.txt in Resources */,
 				E92507E727A61A800069046E /* SavedTableViewCell.xib in Resources */,
 				E971864C275DA16700425021 /* eff_large_wordlist.txt in Resources */,
+				E9C771D427C2EA630044D661 /* DonateTableViewCell.xib in Resources */,
 				E9918368275AFA760050ED6A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,12 +241,14 @@
 				E97186502760342C00425021 /* SettingsModel.swift in Sources */,
 				E9918365275AFA760050ED6A /* GeneratorViewController.swift in Sources */,
 				E9EBDF4E27A792B8003BDC5F /* SavedTableViewCell.swift in Sources */,
+				E90252AE27B6EF3200F1B5D0 /* ObfuscationTableViewCell.swift in Sources */,
 				E9EE1BD2277A760500283CCC /* SaveViewController.swift in Sources */,
+				E9C771D327C2EA630044D661 /* DonateTableViewCell.swift in Sources */,
 				E9EE1BD6277AAEFE00283CCC /* SavedViewController.swift in Sources */,
 				E92507E327A60C600069046E /* PasswordInfo.swift in Sources */,
 				E95D6C20277D30200084A725 /* SaveModel.swift in Sources */,
 				E971864A275D9C4F00425021 /* GeneratorModel.swift in Sources */,
-				E92507EB27A7117D0069046E /* DefaultGeneratorSettings.swift in Sources */,
+				E92507EB27A7117D0069046E /* K.swift in Sources */,
 				E9918361275AFA760050ED6A /* AppDelegate.swift in Sources */,
 				E971864E275E8EE000425021 /* SettingsViewController.swift in Sources */,
 				E9918363275AFA760050ED6A /* SceneDelegate.swift in Sources */,
@@ -363,9 +399,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99DLW2RZNX;
+				DEVELOPMENT_TEAM = 3B3W5URZ2C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Password Generator/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Generator;
@@ -380,8 +417,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.naiadanthem.PasswordGenerator;
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.naiadanthem.Password-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -393,9 +431,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99DLW2RZNX;
+				DEVELOPMENT_TEAM = 3B3W5URZ2C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Password Generator/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Generator;
@@ -410,8 +449,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.naiadanthem.PasswordGenerator;
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.naiadanthem.Password-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,6 +480,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E90252A627B59EBF00F1B5D0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E90252A727B59EBF00F1B5D0 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E90252A627B59EBF00F1B5D0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9918355275AFA760050ED6A /* Project object */;
 }
